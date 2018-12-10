@@ -38,12 +38,12 @@ module "s3-bucket-encryption-config-rule" {
   Region = "${data.aws_region.current.name}"
 }
 
-# # # Enable S3 Bucket Encryption Lambda Function
-# module "enable-s3-bucket-encryption" {
-#   source = "./modules/enable-s3-bucket-encryption"
+# # Enable S3 Bucket Encryption Lambda Function
+module "enable-s3-bucket-encryption" {
+  source = "./modules/enable-s3-bucket-encryption"
 
-#   # Parameters
-#   Region = "${data.aws_region.current.name}"
-# }
+  # Parameters
+  Region = "${data.aws_region.current.name}"
+}
 
 
