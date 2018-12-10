@@ -1,3 +1,13 @@
+####################################
+# Data Sources
+####################################
+data "archive_file" "source" {
+  type        = "zip"
+  source_dir  = "${path.module}/"
+  output_path = "source.zip"
+}
+
+
 #################################### 
 # Resources
 #################################### 
@@ -32,7 +42,7 @@ EOF
 
 # Lambda Function - backend support of config rule
 resource "aws_lambda_function" "Function" {
-  filename = "~/ahead/internal-projects/terraform-presentation/modules/s3-bucket-encryption-config-rule/s3-bucket-encryption-config-rule.zip"
+  filename = "source.zip"
   function_name = "s3-bucket-encryption-enabled-rule"
   description = "Evaluates S3 Buckets for encryption configuration, puts compliance results into AWS Config"
   role = "${aws_iam_role.Role.arn}"

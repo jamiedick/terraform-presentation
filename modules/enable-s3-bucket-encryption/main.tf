@@ -1,9 +1,18 @@
+####################################
+# Data Sources
+####################################
+data "archive_file" "source" {
+  type        = "zip"
+  source_dir  = "${path.module}/"
+  output_path = "source.zip"
+}
+
 #################################### 
 # Resources
 #################################### 
 # Lambda Function - enable s3 bucket encryption
 resource "aws_lambda_function" "Function" {
-  filename = "~/ahead/internal-projects/terraform-presentation/modules/enable-s3-bucket-encryption/enable-s3-bucket-encryption.zip"
+  filename = "source.zip"
   function_name = "enable-s3-bucket-encryption"
   description = "Enables the encryption property on an s3 bucket"
   role = "${aws_iam_role.Role.arn}"
