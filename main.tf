@@ -1,4 +1,17 @@
 ####################################
+# Backend
+####################################
+terraform {
+  backend "s3" {
+    bucket = "terraform-test-1-jamiedick"
+    key    = "terraform-state/terraform.tfstate"
+    region = "us-east-1"
+    encrypt = false
+    profile = "terraform-presentation"
+  }
+}
+
+####################################
 # Data Sources
 ####################################
 data "aws_region" "current" {}
@@ -9,7 +22,7 @@ data "aws_region" "current" {}
 #################################### 
 provider "aws" {
   region = "${var.Region}"
-  profile = "jamiedick-sandbox"
+  profile = "terraform-presentation"
 }
 
 
