@@ -11,6 +11,7 @@ terraform {
   }
 }
 
+
 ####################################
 # Data Sources
 ####################################
@@ -21,7 +22,6 @@ data "aws_region" "current" {}
 # Provider
 #################################### 
 provider "aws" {
-  region = "${var.Region}"
   profile = "terraform-presentation"
 }
 
@@ -51,7 +51,7 @@ module "s3-bucket-encryption-config-rule" {
   Region = "${data.aws_region.current.name}"
 }
 
-# # Enable S3 Bucket Encryption Lambda Function
+# Enable S3 Bucket Encryption Lambda Function
 module "enable-s3-bucket-encryption" {
   source = "./modules/enable-s3-bucket-encryption"
 

@@ -1,5 +1,4 @@
 # Config Recorder Parameters
-variable "Region" {}
 variable "S3Bucket" {
   description = "The name of the S3 bucket used to store the configuration history."
 }
